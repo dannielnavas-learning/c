@@ -20,6 +20,9 @@ int main()
 // long 8 Bytes -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
 // unsigned long 0 to 18,446,744,073,709,551,615 (8 bytes)
 
+// char 1 byte -128 to 127
+// unsigned char 0 to 255 (1 byte)
+
 //  De punto flotante:
 // float 4 Bytes 1.2E-38 to 3.4E+38 6 decimal places
 // double 8 Bytes 2.3E-308 to 1.7E+308 15 decimal places
@@ -27,16 +30,16 @@ int main()
 
 // tipo void: no devuelve ningun valor y se usa en 3 escenarios
 // 1. una funcion retorna un tipo de datos VOID => cuando ese ejecuta no retorna ningun valor
-            // void function()
-            // {
-            //     printf("This function returns no value\n");
-            // }
+// void function()
+// {
+//     printf("This function returns no value\n");
+// }
 // 2. una funcion tiene argumentos de tipo VOID => cuando se ejecuta no recibe ningun valor
-            // int random(void)
-            // {
-            //     return 4; // returns a random number
-            // }
+// int random(void)
+// {
+//     return 4; // returns a random number
+// }
 // 3. Puntero o apuntador que va a la direccion en memoria de un objeto pero no le importa el tipo de dato que tenga
-            // void *ptr;
-            // int x = 10;
-            // ptr = &x; // pointer to any data type
+// void *ptr;
+// int x = 10;
+// ptr = &x; // pointer to any data type
