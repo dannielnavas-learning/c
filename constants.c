@@ -7,6 +7,7 @@ const float iva = 0.16;    // seis espacios despues del punto por el tipo float
 const char moneda = '$';   // se puede dejar a un char un salto de linea  con la convecion backslash (\) + n
 
 // otra forma de declarar constantes es usando #define no se usa el = ni punto y coma
+// define se usa para las declaraciones arriba ejemplo el cambio de un semaforo es de uso global para no tener que cambiar constantes dentro de las demas funciones
 #define COST_HOTDOG 5u
 #define IVA 0.16
 #define COIN '$'
