@@ -9,6 +9,13 @@ Este repositorio contiene los conceptos fundamentales aprendidos en el curso de 
 3. [Variables](#variables)
 4. [Constantes](#constantes)
 5. [Enumeraciones](#enumeraciones)
+6. [Control de Flujo - Condicionales](#control-de-flujo---condicionales)
+7. [Control de Flujo - Bucles](#control-de-flujo---bucles)
+8. [Sentencias de Control de Bucles](#sentencias-de-control-de-bucles)
+9. [Switch](#switch)
+10. [Goto](#goto)
+11. [Entrada de Datos](#entrada-de-datos)
+12. [Ejemplos Prácticos](#ejemplos-prácticos)
 
 ---
 
@@ -90,6 +97,7 @@ El tipo `void` se usa en tres escenarios:
    ```
 
 3. **Puntero genérico:**
+
    ```c
    void *ptr;
    int x = 10;
@@ -297,6 +305,339 @@ gcc -Wall -Wextra -g3 archivo.c -o output/ejecutable
 
 ---
 
+## Control de Flujo - Condicionales
+
+Las condicionales permiten ejecutar diferentes bloques de código según se cumplan o no determinadas condiciones.
+
+### Estructura if-else if-else
+
+```c
+int n = 15;
+
+if (n > 10 && n <= 20)
+{
+    printf("n es mayor que 10\n");
+}
+else if (n == 10)
+{
+    printf("n es igual a 10\n");
+}
+else if (n > 20)
+{
+    printf("n es mayor que 20\n");
+}
+else
+{
+    printf("n es menor que 10\n");
+}
+```
+
+
+- `if` evalúa si la condición es verdadera
+- `else if` permite múltiples condiciones
+- `else` ejecuta si ninguna condición anterior es verdadera
+- Se pueden usar operadores lógicos: `&&` (AND), `||` (OR), `!` (NOT)
+
+### Comparadores
+
+| Operador | Significado       | Ejemplo   |
+| -------- | ----------------- | --------- |
+| `==`     | Igual a           | `n == 10` |
+| `!=`     | No igual a        | `n != 10` |
+| `>`      | Mayor que         | `n > 10`  |
+| `<`      | Menor que         | `n < 10`  |
+| `>=`     | Mayor o igual que | `n >= 10` |
+| `<=`     | Menor o igual que | `n <= 10` |
+
+---
+
+## Control de Flujo - Bucles
+
+Los bucles permiten repetir un bloque de código múltiples veces.
+
+### Bucle while
+
+El bucle `while` se ejecuta mientras la condición sea verdadera.
+
+```c
+int n = 20;
+
+while (n > 10)
+{
+    printf("n es igual a %d\n", n);
+    n = n - 1;
+}
+
+printf("Hemos salido del bucle porque n es igual o menor que diez.\n");
+```
+
+**Características:**
+
+- Se evalúa la condición ANTES de ejecutar el bloque
+- Si la condición es falsa desde el inicio, el bloque nunca se ejecuta
+- Ideal cuando no conocemos el número exacto de iteraciones
+
+### Bucle do-while
+
+El bucle `do-while` se ejecuta al menos una vez, luego evalúa la condición.
+
+```c
+int i = 0;
+
+do
+{
+    printf("i = %d\n", i);
+    i++;
+} while (i < 5);
+```
+
+**Características:**
+
+- El bloque se ejecuta primero, después se verifica la condición
+- Se ejecuta mínimo una vez, incluso si la condición es falsa
+- Útil para menús o validaciones
+
+### Bucle for
+
+El bucle `for` es ideal cuando se conoce el número de iteraciones.
+
+```c
+for (int i = 0; i < 5; i++)
+{
+    printf("i = %d\n", i);
+}
+```
+
+**Estructura:**
+
+```
+for (inicialización; condición; incremento)
+{
+    // Bloque de código
+}
+```
+
+**Características:**
+
+- Inicialización: se ejecuta una sola vez al principio
+- Condición: se evalúa antes de cada iteración
+- Incremento: se ejecuta después de cada iteración
+- Ideal para iterar arrays y cuando se conoce el número de repeticiones
+
+---
+
+## Sentencias de Control de Bucles
+
+### break
+
+La sentencia `break` sale del bucle inmediatamente.
+
+```c
+int option = 1;
+
+switch (option)
+{
+case 1:
+    printf("Option 1 selected\n");
+    break;  // Sale del switch
+case 2:
+    printf("Option 2 selected\n");
+    break;
+default:
+    printf("Invalid option\n");
+    break;
+}
+```
+
+**Usos:**
+
+- Salir de un bucle antes de que la condición se cumpla
+- Muy importante en `switch` para evitar "caídas" entre casos
+- Se usa en bucles `for`, `while` y `do-while`
+
+### continue
+
+La sentencia `continue` salta la iteración actual y continúa con la siguiente.
+
+```c
+for (int i = 0; i < 5; i++)
+{
+    if (i == 2)
+    {
+        continue;  // Salta cuando i es 2
+    }
+    printf("i = %d\n", i);  // Imprime: 0, 1, 3, 4
+}
+```
+
+**Características:**
+
+- Salta el resto del código en la iteración actual
+- Continúa con la siguiente iteración
+- **No se puede usar en `switch`**
+- Válido en bucles `for`, `while` y `do-while`
+
+---
+
+## Switch
+
+La sentencia `switch` permite seleccionar entre múltiples opciones basadas en el valor de una variable.
+
+```c
+int variable;
+printf("Ingrese un número (1-3): ");
+
+switch (variable)
+{
+case 1:
+    printf("Opción 1 seleccionada\n");
+    break;
+case 2:
+    printf("Opción 2 seleccionada\n");
+    break;
+case 3:
+    printf("Opción 3 seleccionada\n");
+    break;
+default:
+    printf("Ninguna opción válida seleccionada\n");
+    break;
+}
+```
+
+**Puntos importantes:**
+
+- Cada `case` debe terminar con `break` (excepto si se quiere "caída" intencional)
+- `default` es opcional y se ejecuta si ningún caso coincide
+- Es más legible que múltiples `if-else if` para muchas opciones
+- Solo compara valores exactos
+
+---
+
+## Goto
+
+La sentencia `goto` permite saltar a una etiqueta específica en el código.
+
+```c
+int number;
+printf("Enter a number: ");
+scanf("%d", &number);
+
+if (number < 0)
+{
+    goto negative;
+}
+else
+{
+    goto positive;
+}
+
+negative:
+    printf("The number is negative.\n");
+    return 0;
+
+positive:
+    printf("The number is positive.\n");
+    return 0;
+```
+
+**⚠️ Advertencia importante:**
+
+- `goto` **NO se recomienda usar** en la práctica
+- Puede llevar a código confuso y difícil de seguir ("spaghetti code")
+- Rompe la estructura secuencial del código
+- Prefiere usar estructuras de control como `if`, `switch`, bucles y funciones
+
+---
+
+## Entrada de Datos
+
+Para leer entrada del usuario se utiliza la función `scanf()`.
+
+### scanf()
+
+```c
+int variable;
+printf("Ingrese un número: ");
+scanf("%d", &variable);  // &variable es la dirección de memoria
+```
+
+### Especificadores de Formato para scanf()
+
+| Especificador | Tipo     |
+| ------------- | -------- |
+| `%d`          | Entero   |
+| `%f`          | Flotante |
+| `%lf`         | Double   |
+| `%c`          | Carácter |
+| `%s`          | String   |
+
+**Puntos importantes:**
+
+- El `&` antes del nombre de variable indica su dirección en memoria
+- Sin `&`, scanf no sabría dónde guardar el valor
+- Para strings (`%s`), no se usa `&`
+
+---
+
+## Ejemplos Prácticos
+
+### Menú Interactivo
+
+```c
+int option1 = 0;
+int option2 = 0;
+
+int main()
+{
+    if (option1 == 0)
+    {
+        printf("Opción 1 seleccionada\n");
+        printf("Ingrese una opción para el menú 2: ");
+        scanf("%d", &option2);
+
+int option1 = 0;
+int option2 = 0;
+
+int main()
+{
+    if (option1 == 0)
+    {
+        printf("Opción 1 seleccionada\n");
+        printf("Ingrese una opción para el menú 2: ");
+        scanf("%d", &option2);
+        
+        if (option2 == 0)
+        {
+            printf("Opción 2.0 seleccionada\n");
+        }
+        else if (option2 == 1)
+        {
+            printf("Opción 2.1 seleccionada\n");
+        }
+        else if (option2 == 2)
+        {
+            printf("Opción 2.2 seleccionada\n");
+        }
+        else
+        {
+            printf("Ninguna opción válida seleccionada\n");
+        }
+    }
+    else if (option1 == 1)
+    {
+        printf("Opción 1.1 seleccionada\n");
+    }
+    else
+    {
+        printf("Ninguna opción válida seleccionada\n");
+    }
+
+    return 0;
+}
+```
+
+---
+
 ## Notas Importantes
 
 1. **Strings en C:** C no tiene un tipo `string` nativo. Los strings se representan como arrays de caracteres terminados con un carácter nulo (`\0`).
@@ -312,6 +653,10 @@ gcc -Wall -Wextra -g3 archivo.c -o output/ejecutable
 
 5. **sizeof() operator:** Devuelve el tamaño en bytes de un tipo de dato o variable.
 
+6. **Break en switch:** **Siempre** termina cada case con `break`, excepto que quieras que continúe al siguiente case.
+
+7. **Evita goto:** Es una mala práctica. Usa en su lugar: `if-else`, `switch`, bucles y funciones.
+
 ---
 
 ## Archivos del Proyecto
@@ -320,6 +665,15 @@ gcc -Wall -Wextra -g3 archivo.c -o output/ejecutable
 - `variables.c` - Declaración y uso de variables
 - `constants.c` - Constantes con `const` y `#define`
 - `enums.c` - Enumeraciones
+- `if.c` - Condicionales con `if`, `else if` y `else`
+- `while.c` - Bucles `while`
+- `do-while.c` - Bucles `do-while`
+- `for.c` - Bucles `for`
+- `break.c` - Sentencia `break` en bucles y `switch`
+- `continue.c` - Sentencia `continue` en bucles
+- `switch.c` - Sentencia `switch` para múltiples opciones
+- `goto.c` - Sentencia `goto` (no recomendado)
+- `menu.c` - Ejemplo práctico de menú interactivo
 
 ---
 
