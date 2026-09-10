@@ -8,6 +8,8 @@
 // declarations son las declaraciones de variables locales dentro de la funcion.
 // statements son las instrucciones que la funcion va a ejecutar.
 
+#include <stdio.h>
+
 int powerOfInteger(int base, int exponent)
 {
     int result = 1;
@@ -15,5 +17,11 @@ int powerOfInteger(int base, int exponent)
     {
         result *= base;
     }
+    // printf("%d\n", result);
     return result;
+}
+
+int main()
+{
+    printf("%d\n", powerOfInteger(2, 2));
 }
